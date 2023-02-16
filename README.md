@@ -4,11 +4,10 @@
 2. creer les buffers qui serviront d'arguments d'entree a la fonction et les remplir de donnees
 3. recuperer les infos de plateforme avec clGetPlatformIDs et recuperer les infos des device avec clGetDeviceIDs
 `clGetPlatformIDs(1, &platform_id, &ret_num_platforms);`\
-pourquoi 1 en premier argument ?
+pourquoi 1 en premier argument ?\
 >`cl_int clGetPlatformIDs(cl_uint num_entries, cl_platform_id *platforms,cl_uint *num_platforms);`
->num_entries
->The number of cl_platform_id entries that can be added to platforms. If platforms is
->not NULL, the num_entries must be greater than zero.
+>num_entries\
+>The number of cl_platform_id entries that can be added to platforms. If platforms is not NULL, the num_entries must be greater than zero.
 
 4. creer un context avec clCreateContext\
 ` cl_context context = clCreateContext( NULL, ret_num_devices, &device_id, NULL, NULL, &ret);`
@@ -35,7 +34,7 @@ pourquoi 1 en premier argument ?
 `ret = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&a_mem_obj);`
 
 12. Execution du kernel sur le device OpenCL  avec la fonction clEnqueueNDRangeKernel\
->`cl_int clEnqueueNDRangeKernel (cl_command_queue command_queue,cl_kernel kernel,cl_uint work_dim,const size_t *global_work_offset,const size_t *global_work_size,const size_t *local_work_size,cl_uint num_events_in_wait_list,const cl_event *event_wait_list,cl_event *event);`
+>`cl_int clEnqueueNDRangeKernel (cl_command_queue command_queue,cl_kernel kernel,cl_uint work_dim,const size_t *global_work_offset,const size_t *global_work_size,const size_t *local_work_size,cl_uint num_events_in_wait_list,const cl_event *event_wait_list,cl_event *event);`\
 >work_dim ?\
 >The number of dimensions used to specify the global work-items and work-items in the work-group. work_dim must be greater than zero and less than or equal to three.\
 
