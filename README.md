@@ -42,9 +42,9 @@
   	                                    const size_t *local_work_size,
   	                                    cl_uint num_events_in_wait_list,
   	                                    const cl_event *event_wait_list,
-  	                                    cl_event *event)
+  	                                    cl_event *event);
 
-    work_dim ?
+        work_dim ?
         The number of dimensions used to specify the global work-items and work-items in the work-group. work_dim must be greater than zero and less than or equal to three.
 
     ret = clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL, &global_item_size, &local_item_size, 0, NULL, NULL);
