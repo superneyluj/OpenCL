@@ -22,26 +22,26 @@ pourquoi 1 en premier argument ?
 7. on remplit les buffer cote device avec les buffer cote host avec la fonction clEnqueueWriteBuffer, donc on ne remplit que les buffer d'entrees\
 `ret = clEnqueueWriteBuffer(command_queue, a_mem_obj, CL_TRUE, 0,LIST_SIZE * sizeof(int), A, 0, NULL, NULL);`
 
-8. on cree un programme avec la fonction clCreateProgram qui va servir a recuperer le code dans la chaine de caracteres de l'etape 1
+8. on cree un programme avec la fonction clCreateProgram qui va servir a recuperer le code dans la chaine de caracteres de l'etape 1\
 `cl_program program = clCreateProgramWithSource(context, 1,(const char **)&source_str, (const size_t *)&source_size, &ret);`
 
-9. On "compile" le kernel avec la fonction clBuildProgram
+9. On "compile" le kernel avec la fonction clBuildProgram\
 `ret = clBuildProgram(program, 1, &device_id, NULL, NULL, NULL);`
 
-10. On cree le kernel avec la fonction clCreateKernel
+10. On cree le kernel avec la fonction clCreateKernel\
 `cl_kernel kernel = clCreateKernel(program, "vector_add", &ret);`
 
-11. On "precharge" les arguments d'entree du kernel avec la fonction clSetKernelArg
+11. On "precharge" les arguments d'entree du kernel avec la fonction clSetKernelArg\
 `ret = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&a_mem_obj);`
 
-12. Execution du kernel sur le device OpenCL  avec la fonction clEnqueueNDRangeKernel
+12. Execution du kernel sur le device OpenCL  avec la fonction clEnqueueNDRangeKernel\
 >`cl_int clEnqueueNDRangeKernel (cl_command_queue command_queue,cl_kernel kernel,cl_uint work_dim,const size_t *global_work_offset,const size_t *global_work_size,const size_t *local_work_size,cl_uint num_events_in_wait_list,const cl_event *event_wait_list,cl_event *event);`
->work_dim ?
->The number of dimensions used to specify the global work-items and work-items in the work-group. work_dim must be greater than zero and less than or equal to three.
+>work_dim ?\
+>The number of dimensions used to specify the global work-items and work-items in the work-group. work_dim must be greater than zero and less than or equal to three.\
 
 `ret = clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL, &global_item_size, &local_item_size, 0, NULL, NULL);`
 
-13. Lecture du buffer de sortie avec clEnqueueReadBuffer
+13. Lecture du buffer de sortie avec clEnqueueReadBuffer\
 `ret = clEnqueueReadBuffer(command_queue, c_mem_obj, CL_TRUE, 0, LIST_SIZE * sizeof(int), C, 0, NULL, NULL);`
 
 14. Liberation des differents elements
