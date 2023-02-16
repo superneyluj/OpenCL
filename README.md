@@ -42,13 +42,13 @@ pourquoi 1 en premier argument ?
 `ret = clEnqueueNDRangeKernel(command_queue, kernel, 1, NULL, &global_item_size, &local_item_size, 0, NULL, NULL);`
 
 ### 13- Lecture du buffer de sortie avec clEnqueueReadBuffer
-    `ret = clEnqueueReadBuffer(command_queue, c_mem_obj, CL_TRUE, 0, LIST_SIZE * sizeof(int), C, 0, NULL, NULL);`
+`ret = clEnqueueReadBuffer(command_queue, c_mem_obj, CL_TRUE, 0, LIST_SIZE * sizeof(int), C, 0, NULL, NULL);`
 
 ### 14 - Liberation des differents elements
-    ```ret = clFlush(command_queue);
-    ret = clFinish(command_queue);
-    ret = clReleaseKernel(kernel);
-    ret = clReleaseProgram(program);
-    ret = clReleaseMemObject(a_mem_obj);
-    ret = clReleaseCommandQueue(command_queue);
-    ret = clReleaseContext(context);```
+```ret = clFlush(command_queue);
+ret = clFinish(command_queue);
+ret = clReleaseKernel(kernel);
+ret = clReleaseProgram(program);
+ret = clReleaseMemObject(a_mem_obj);
+ret = clReleaseCommandQueue(command_queue);
+ret = clReleaseContext(context);```
